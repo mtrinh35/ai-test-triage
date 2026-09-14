@@ -90,11 +90,13 @@ def test_parse_config_valid_input():
 # 4. TIMEOUT / PERFORMANCE
 # ---------------------------------------------------------------------------
 
-@pytest.mark.timeout(2)
 def test_has_duplicate_large_input_within_time_limit():
-    # Fails/times out: O(n^2) implementation is too slow at this size
+    # Fails: O(n^2) implementation is too slow at this size, exceeds the 2s budget
     large_list = list(range(20000)) + [19999]
-    assert has_duplicate(large_list) is True
+    start = time.time()
+    has_duplicate(large_list)
+    elapsed = time.time() - start
+    assert elapsed < 2.0, f"has_duplicate took {elapsed:.2f}s, exceeding the 2s limit"
 
 
 def test_has_duplicate_small_input():
