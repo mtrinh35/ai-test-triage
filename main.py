@@ -17,6 +17,8 @@ from report_generator import generate_report
 
 
 def main():
+    # block adds commands for local runs, No API usage with --no-triage 
+    # if --no-triage isnt typed, default is false, API is not used
     parser = argparse.ArgumentParser(description="AI-assisted test triage pipeline")
     parser.add_argument("--tests", default="sample_tests", help="Path to test directory")
     parser.add_argument("--out", default="test_report.md", help="Output report path")

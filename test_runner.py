@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 
-def run_tests(test_path="sample_tests", report_path="report.json"):
+def run_tests(test_path="tests/test_suite.py", report_path="report.json"):
     """
     Runs pytest with the json-report plugin and returns the raw report dict.
     """

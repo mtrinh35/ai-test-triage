@@ -20,11 +20,21 @@ Given a failing test's name, error message, and traceback, respond with ONLY a J
 object (no markdown, no preamble) with these exact keys:
 
 {
-  "category": one of ["logic_bug", "environment_issue", "flaky_test", "bad_assertion", "unknown"],
+  "category": one of ["logic_bug", "environment_issue", "flaky_test", "bad_assertion", "unknown", "edge_case", "timeout"],
   "root_cause": "one clear sentence explaining why this likely failed",
   "suggested_fix": "one or two sentences with a concrete next step",
   "priority": one of ["high", "medium", "low"]
 }
+
+Category guidance:
+- logic_bug: the code computes the wrong result for normal, well-formed input
+- edge_case: the code fails specifically on boundary input (empty, null, zero, max/min values) that wasn't handled
+- timeout: the test failed because it exceeded a time limit, not because of an incorrect result
+- environment_issue: the failure is caused by a missing/misconfigured dependency, connection, or external resource, not a bug in the code under test
+- flaky_test: the failure appears non-deterministic or intermittent
+- bad_assertion: the test itself asserts the wrong expected value
+- unknown: none of the above clearly apply
+
 """
 
 

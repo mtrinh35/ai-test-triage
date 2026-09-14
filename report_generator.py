@@ -34,17 +34,15 @@ def generate_report(summary, results, output_path="test_report.md"):
         )
 
         lines.append("## Failed Tests (sorted by priority)\n")
-        lines.append("| Test | Priority | Category | Root Cause | Suggested Fix |")
-        lines.append("|---|---|---|---|---|")
         for r in failed_sorted:
             t = r.get("triage", {})
-            lines.append(
-                f"| `{r['name']}` "
-                f"| {t.get('priority', '-')} "
-                f"| {t.get('category', '-')} "
-                f"| {t.get('root_cause', '-')} "
-                f"| {t.get('suggested_fix', '-')} |"
-            )
+            priority = t.get("priority", "-").upper()
+            category = t.get("category", "-")
+            lines.append(f"### `{r['name']}`")
+            lines.append(f"**Priority:** {priority}  |  **Category:** {category}\n")
+            lines.append(f"**Root cause:** {t.get('root_cause', '-')}\n")
+            lines.append(f"**Suggested fix:** {t.get('suggested_fix', '-')}\n")
+            lines.append("---\n")
 
     report_text = "\n".join(lines)
     with open(output_path, "w") as f:
