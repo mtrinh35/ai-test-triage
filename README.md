@@ -19,7 +19,7 @@ export ANTHROPIC_API_KEY=sk-ant-your-key-here   # console.anthropic.com
 ## Usage
 
 ```bash
-python main.py                          # run sample_tests/, triage failures, write test_report.md
+python main.py                          # run tests/test_suite.py, triage failures, write test_report.md
 python main.py --tests my_tests/        # point at your own test directory
 python main.py --no-triage              # just run + report, skip the API calls (no key needed)
 ```

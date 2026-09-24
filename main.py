@@ -6,9 +6,9 @@ with Claude -> generate a markdown report.
 
 Usage:
     export ANTHROPIC_API_KEY=sk-ant-...
-    python main.py
-    python main.py --tests sample_tests --out test_report.md
-    python main.py --no-triage      # run/report without calling the API
+    python3 main.py
+    python3 main.py --tests tests/test_suite.py --out test_report.md
+    python3 main.py --no-triage      # run/report without calling the API
 """
 
 import argparse
@@ -20,7 +20,7 @@ def main():
     # block adds commands for local runs, No API usage with --no-triage 
     # if --no-triage isnt typed, default is false, API is not used
     parser = argparse.ArgumentParser(description="AI-assisted test triage pipeline")
-    parser.add_argument("--tests", default="sample_tests", help="Path to test directory")
+    parser.add_argument("--tests", default="tests/test_suite.py", help="Path to test directory")
     parser.add_argument("--out", default="test_report.md", help="Output report path")
     parser.add_argument("--no-triage", action="store_true", help="Skip Claude triage (just run + report)")
     args = parser.parse_args()

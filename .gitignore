@@ -4,4 +4,4 @@ report.json
 test_report.md
 .coverage
 coverage.xml
-htmlcov/
+htmlcov/.DS_Store
