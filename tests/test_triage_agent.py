@@ -1,12 +1,10 @@
 import sys
 import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import json
 import pytest
 from unittest.mock import patch
 from types import SimpleNamespace
-from triage_agent import triage_failure, triage_all_failures
+from triage.triage_agent import triage_failure, triage_all_failures
 
 
 def make_fake_client(response_text):
@@ -79,7 +77,7 @@ def test_triage_all_failures_only_triages_failed_tests(monkeypatch):
     })
     fake_client = make_fake_client(fake_json)
 
-    with patch("triage_agent.Anthropic", return_value=fake_client):
+    with patch("triage.triage_agent.Anthropic", return_value=fake_client):
         results = [
             {"name": "test_a", "outcome": "passed", "error_message": None, "traceback": None},
             {"name": "test_b", "outcome": "failed", "error_message": "boom", "traceback": "..."},

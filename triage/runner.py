@@ -1,5 +1,5 @@
 """
-test_runner.py
+runner.py
 
 Executes a pytest suite and converts the results into a clean, structured
 format (list of dicts) that downstream stages (triage_agent, report_generator)
@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 
-def run_tests(test_path="tests/test_suite.py", report_path="report.json"):
+def run_tests(test_path="seeded_suite/test_suite.py", report_path="report.json"):
     """
     Runs pytest with the json-report plugin and returns the raw report dict.
     """

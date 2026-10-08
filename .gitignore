@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 report.json
+reports/
 test_report.md
 .coverage
 coverage.xml

@@ -12,15 +12,15 @@ Usage:
 """
 
 import argparse
-from test_runner import run_tests, extract_results, summarize
-from report_generator import generate_report
-
+from triage.runner import run_tests, extract_results, summarize
+from triage.report_generator import generate_report
+from triage.triage_agent import triage_all_failures
 
 def main():
     # block adds commands for local runs, No API usage with --no-triage 
     # if --no-triage isnt typed, default is false, API is not used
     parser = argparse.ArgumentParser(description="AI-assisted test triage pipeline")
-    parser.add_argument("--tests", default="tests/test_suite.py", help="Path to test directory")
+    parser.add_argument("--tests", default="seeded_suite/test_suite.py", help="Path to test directory")
     parser.add_argument("--out", default="test_report.md", help="Output report path")
     parser.add_argument("--no-triage", action="store_true", help="Skip Claude triage (just run + report)")
     args = parser.parse_args()
@@ -32,7 +32,6 @@ def main():
     print(f"  {summary['passed']} passed, {summary['failed']} failed, {summary['duration']:.2f}s")
 
     if not args.no_triage and summary["failed"] > 0:
-        from triage_agent import triage_all_failures
         print("Sending failures to Claude for triage...")
         results = triage_all_failures(results)
 

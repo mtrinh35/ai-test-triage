@@ -18,8 +18,7 @@ import os
 import time
 import pytest
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from app import (
+from seeded_suite.seeded_bugs import (
     add_tax,
     find_max,
     calculate_average,
@@ -92,11 +91,11 @@ def test_parse_config_valid_input():
 
 def test_has_duplicate_large_input_within_time_limit():
     # Fails: O(n^2) implementation is too slow at this size, exceeds the 2s budget
-    large_list = list(range(20000)) + [19999]
+    large_list = list(range(5000)) + [4999]
     start = time.time()
     has_duplicate(large_list)
     elapsed = time.time() - start
-    assert elapsed < 2.0, f"has_duplicate took {elapsed:.2f}s, exceeding the 2s limit"
+    assert elapsed < 0.5, f"has_duplicate took {elapsed:.2f}s, exceeding the 0.5s limit"
 
 
 def test_has_duplicate_small_input():
