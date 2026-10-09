@@ -10,7 +10,7 @@ Categories covered:
   6. Environment / dependency failures
   7. Batch of simultaneous failures (mixed)
 
-Run with: pytest tests/test_suite.py -v
+pytest will test only the functions starting with test...
 """
 
 import sys

@@ -7,7 +7,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-TESTS="${1:-tests/test_suite.py}"
+TESTS="${1:-seeded_suite/test_suite.py}"
 REPORT_DIR="reports"
 STAMP=$(date +%Y%m%d_%H%M%S)
 OUT="$REPORT_DIR/report_$STAMP.md"
